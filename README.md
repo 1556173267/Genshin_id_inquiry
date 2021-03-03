@@ -5,8 +5,10 @@
 
 使用的是java语言编写，使用Eclipse中WindowBuilder插件完成可视化过程，所以JFrame中写的挺乱。
 主要使用如下两个米游社API:
+
 API1:https://api-takumi.mihoyo.com/game_record/genshin/api/spiralAbyss?schedule_type=1&server=(所在服,如cn_gf01或cn_qd01)&role_id=(游戏ID)
 可获取到该id全部角色和活跃天数宝箱等信息
+
 API2:https://api-takumi.mihoyo.com/game_record/genshin/api/character
 发送时附带json{"character_ids":[角色id,角色id,角色id,..........],"role_id":"游戏ID","server":"所在服"}
 
