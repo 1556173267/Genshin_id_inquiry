@@ -18,7 +18,7 @@ API3:https://api-takumi.mihoyo.com/game_record/genshin/api/spiralAbyss?schedule_
 
 API4:https://hk4e-api.mihoyo.com/event/ys_ledger/monthDetail?page=(页数)&month=(月份，仅支持查询近三个月)&limit=(一次的返回信息数量)&type=(1为原石,2为摩拉)&bind_uid=(游戏ID)&bind_region=(所在服)&bbs_presentation_style=fullscreen&bbs_auth_required=true&utm_source=bbs&utm_medium=mys&utm_campaign=icon
 其中参数bbs_auth_required、utm_source、utm_medium、utm_campaign应该可省略
-//原神账号摩拉原石获取记录(近三个月)
+//原神账号摩拉原石获取记录(近三个月),仅限Cookie本身账号，其他账号会提示Invalid schedule type
 
 API5:https://api-takumi.mihoyo.com/game_record/card/wapi/getGameRecordCard?uid=(米游社ID)
 可通过该接口，通过米游社UID获得对应原神UID和基本信息，若对方在米游社设置隐藏，则返回结果List为空
