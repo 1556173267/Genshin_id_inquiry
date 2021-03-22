@@ -43,6 +43,7 @@ public class MyGenshin extends JFrame {
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JLabel lbling;
+	private JButton jb_gulf;
 	String id_data  ;
 
 	String Avatars_data_html;
@@ -75,7 +76,7 @@ public class MyGenshin extends JFrame {
 	 */
 	public MyGenshin() {
 		this.me = this;
-		setTitle("原神查询小助手 & by 贴吧 神无月[樱花]");
+		setTitle("原神查询小助手1.1 & by 贴吧 神无月[樱花]");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 0, 549, 831);
 	//	setResizable(false);
@@ -156,12 +157,7 @@ public class MyGenshin extends JFrame {
 					new DemoDialog(me,"Cookies有误或已过期");
 					return ;
 				}
-				try {
-					html = new String(html.getBytes("gbk"),"utf-8");
-				} catch (UnsupportedEncodingException e4) {
-					// TODO 自动生成的 catch 块
-					e4.printStackTrace();
-				}
+
 				Avatars_data_html = html;
 				try {
 //					System.out.println("天\t成就\t风\t岩\t角色\t传送\t秘境\t深渊\t珍\t华\t精\t普");
@@ -210,6 +206,7 @@ public class MyGenshin extends JFrame {
 					JButton jb = new JButton();
 					jb.setFont(new Font("楷书",0,13));
 					jb.setText(data[i].split(";")[1]);//角色名
+					
 					panel.add(jb);
 					int lv = 0;
 					try {
@@ -228,6 +225,23 @@ public class MyGenshin extends JFrame {
 					}
 					Avatarsbts[i] = jb;
 				}
+				
+				jb_gulf = new JButton("深渊信息");
+				jb_gulf.setFont(new Font("楷书",0,13));
+				panel.add(jb_gulf);
+				jb_gulf.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						String data = GetUserId_Img.getHttpResponse("https://api-takumi.mihoyo.com/game_record/genshin/api/spiralAbyss?schedule_type="+1+"&role_id="+game_id+"&server="+(game_id.toCharArray()[0] == '1'?"cn_gf01":"cn_qd01")
+								,cookies);
+						new Gulf(data , 1);
+						String data2 = GetUserId_Img.getHttpResponse("https://api-takumi.mihoyo.com/game_record/genshin/api/spiralAbyss?schedule_type="+2+"&role_id="+game_id+"&server="+(game_id.toCharArray()[0] == '1'?"cn_gf01":"cn_qd01")
+								,cookies);
+						new Gulf(data2 , 2);
+						
+					}
+				});
 				panel_2.removeAll();
 				panel_2.add(new JLabel("共"+data.length+"个角色 , 鼠标移至角色立绘查看角色"));
 				panel.validate();
@@ -365,7 +379,7 @@ public class MyGenshin extends JFrame {
         
         for (int i = 0 ; i < 6 ; i++) {
         	try {
-    			mp2.add(new MyJPanel(90, 90, ImageIO.read(new File("image/such.png"))));
+    			mp2.add(new MyJPanel(90, 90, ImageIO.read(new File("image/such"+i+".png"))));
     		} catch (IOException e1) {
     			// TODO 自动生成的 catch 块
     			e1.printStackTrace();

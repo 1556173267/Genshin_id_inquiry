@@ -171,13 +171,12 @@ public class GetUserId_Img {
 	
 	
 	private static String GetVersion(){
-		return "2.2.1";
+		return "2.3.0";//
 	}
 	
 	private static String GetDS(){
 		
-		//String md5str=DigestUtils.md5Hex(GetVersion());
-		String md5str = "cx2y9z9a29tfqvr1qsq6c7yz99b5jsqt";//2.2.1
+		String md5str = "h8w582wxwgqvahcdkpvdhbh2w9casgfl";//"cx2y9z9a29tfqvr1qsq6c7yz99b5jsqt";//
 		String i = new String(""+System.currentTimeMillis()/1000);
 		String r = MyRandom(6);
 		String c = DigestUtils.md5Hex("salt=" + md5str + "&t="+ i + "&r=" + r);
@@ -207,17 +206,22 @@ public class GetUserId_Img {
 			URL url = uri.toURL();
 			URLConnection connection = url.openConnection();
 			String str = GetDS();
-			connection.setRequestProperty("DS", GetDS());//"1614228889,mJH4jY,4c618fd854bfab789870c4c20a363b34"
-			//System.out.println(str);
+			connection.setRequestProperty("DS", GetDS());
+			/**
+			# 1:  ios
+            # 2:  android
+            # 4:  pc web
+            # 5:  mobile web
+			 */
 			connection.setRequestProperty("x-rpc-client_type", "5");
 			connection.setRequestProperty("x-rpc-app_version", GetVersion());
 			connection.setRequestProperty("x-rpc-channel", "baidu");
 			connection.setRequestProperty("x-rpc-device_model", "HUAWEI LIO-AN00");
-			connection.setRequestProperty("Referer", "https://webstatic.mihoyo.com");///app/community-game-records/index.html?v=21&bbs_auth_required=true&game_id=2&uid=206951463
+			connection.setRequestProperty("Referer", "https://app.mihoyo.com");
 			connection.setRequestProperty("Host", "bbs-api.mihoyo.com");
 			connection.setRequestProperty("Connection", "Keep-Alive");
 			connection.setRequestProperty("Accept-Language", "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7");
-			connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Linux; Android 7.1.2; LIO-AN00 Build/LIO-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/75.0.3770.143 Mobile Safari/537.36 miHoYoBBS/2.5.1");
+			connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Linux; Android 7.1.2; LIO-AN00 Build/LIO-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/75.0.3770.143 Mobile Safari/537.36 miHoYoBBS/2.4.0");
 			connection.setRequestProperty("Charset", "utf-8");
 			connection.setRequestProperty("X-Requested-With", "com.mihoyo.hyperion");
 			
@@ -346,7 +350,6 @@ public class GetUserId_Img {
 			cookies	);
 		System.out.println(html);
 		try {
-			System.out.println("澶‐t鎴愬氨\t椋嶾t宀‐t瑙掕壊\t浼犻�乗t绉樺\t娣辨笂\t鍗嶾t鐝峔t绮綷t鏅�");
 			System.out.println(GetStatsData(html).replace(";", "\t"));
 		} catch (JSONException e) {
 			System.out.println(html);
