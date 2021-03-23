@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import org.json.JSONException;
 
 import cn.ToJson.GetUserId_Img;
+import cn.ToJson.Gulf2Json;
 
 import java.awt.Font;
 import java.awt.Graphics;
@@ -21,7 +22,9 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
@@ -75,6 +78,20 @@ public class MyGenshin extends JFrame {
 	 * Create the frame.
 	 */
 	public MyGenshin() {
+		String mm = null;
+		try {
+            BufferedReader in = new BufferedReader(new FileReader("id_data.txt"));   
+            
+            String str = in.readLine()+"\r\n";
+            mm = new String(str) ;
+            while ((str = in.readLine()) != null) {
+            	mm += str+"\r\n";
+            }
+            
+        } catch (IOException e) {
+        	System.out.println("error");
+        }
+		Gulf2Json.id2name = mm;
 		this.me = this;
 		setTitle("原神查询小助手1.1 & by 贴吧 神无月[樱花]");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
